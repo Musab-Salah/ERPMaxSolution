@@ -11,13 +11,16 @@ title %}
 </div>
 
 <div class="table-grid">
-  {% for location, products in balance.items() %} {% for product in products %}
-  <div class="table-row">
-    <div>{{ product.Product }}</div>
-    <div>{{ location }}</div>
-    <div>{{ product.Qty }}</div>
-  </div>
-  {% endfor %} {% endfor %}
+  {% for location, data in balance.items() %}
+    {% for product in data['Products'] %}
+      <div class="table-row">
+        <div>{{ product['Product Name'] }}</div>
+        <div>{{ data['Location Name'] }}</div>
+        <div>{{ product['Qty'] }}</div>
+      </div>
+    {% endfor %}
+  {% endfor %}
 </div>
+
 
 {% endblock %}

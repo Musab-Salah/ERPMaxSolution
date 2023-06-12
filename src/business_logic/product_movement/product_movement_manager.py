@@ -1,4 +1,4 @@
-from sqlalchemy import or_
+from src.business_logic.report.report_manager import ReportManager
 from src.models import  ProductMovement
 from src import  db
 
@@ -12,21 +12,22 @@ class ProductMovementManager():
         to_id = request.form['to']
         product_id = request.form['product']
         qty = request.form['qty']
-   
-        movements = ProductMovement.query.filter(
-            or_(
-                ProductMovement.to_location_id == to_id,
-                ProductMovement.to_location_id == from_id
-            ),
-            ProductMovement.product_id == product_id
-        ).order_by(ProductMovement.timestamp.desc()).first() 
 
-        if movements is not None :
-          total=movements.qty-int(qty)
-        else:total=-1  
+        balance=ReportManager.get_product_balance()
+
+        previous_movement = None
+
+        for location, data in balance.items():
+            for product in data['Products']:
+                if product['Product ID'] == product_id and data['Location ID'] == from_id:
+                    previous_movement = product
+                    break
+        if previous_movement is None:
+            previous_movement = {'Qty': -10}
+
         if int(qty) > 0:
-            if from_id and to_id:
-                if  total >=0:
+            if (from_id and to_id) or (from_id and not to_id):
+                if int(previous_movement['Qty']) >= int(qty):
                     new_product_movement = ProductMovement(
                         from_location_id=from_id,
                         to_location_id=to_id,
@@ -34,17 +35,6 @@ class ProductMovementManager():
                         product_id=product_id
                     )
                     db.session.add(new_product_movement)
-                else:
-                    return False
-            elif (from_id and not to_id) : 
-                if total >=0 :              
-                    new_product_movement = ProductMovement(
-                        from_location_id=from_id,
-                        to_location_id=to_id,
-                        qty=qty,
-                        product_id=product_id
-                    )
-                    db.session.add(new_product_movement)  
                 else:
                     return False
             elif (to_id and not from_id):
