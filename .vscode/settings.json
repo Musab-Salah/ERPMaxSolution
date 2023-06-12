@@ -1,0 +1,9 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "python.formatting.provider": "none",
+  "python.linting.enabled": false,
+  "python.linting.pycodestyleEnabled": true,
+  "python.analysis.typeCheckingMode": "off"
+}

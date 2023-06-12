@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% include 'nav.html' %} {% block body %} {% block
+title %}
+<title>Report</title>
+{% endblock %}
+<div class="table-grid">
+  <div class="table-row table-title">
+    <div>Product</div>
+    <div>Warehouse</div>
+    <div>Qty</div>
+  </div>
+</div>
+
+<div class="table-grid">
+  {% for location, products in balance.items() %} {% for product in products %}
+  <div class="table-row">
+    <div>{{ product.Product }}</div>
+    <div>{{ location }}</div>
+    <div>{{ product.Qty }}</div>
+  </div>
+  {% endfor %} {% endfor %}
+</div>
+
+{% endblock %}

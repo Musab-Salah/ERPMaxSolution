@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% include 'nav.html' %}{% block title %}<title>
+  Delete
+</title>
+{% endblock %} {% block body %}
+
+<div class="container-delete">
+  <form class="form-delete" action="" method="post">
+    <table class="table">
+      <p class="confirm-msg">Click YES to confirm</p>
+      <div class="button-container">
+        <td>
+          <button
+            type="button"
+            onclick="goBackOrRedirect() "
+            class="btn btn-not"
+          >
+            Cancel
+          </button>
+        </td>
+        <td>
+          <button type="submit" name="submit" value="submit" class="btn">
+            Yes
+          </button>
+        </td>
+      </div>
+    </table>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% include 'nav.html' %} {% block title %}
+<title>Add Movment</title>
+{% endblock %} {% block body %}
+<div class="container">
+  <form action="" method="POST">
+    <table class="table">
+      <tr>
+        <td>From</td>
+        <td>
+          <select name="from" class="form-control">
+            <option selected value="">Choose a City</option>
+            {% for location in locations %}
+            <option value="{{location.location_id}}">
+              {{location.location_name}}
+            </option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>To</td>
+        <td>
+          <select name="to" class="form-control">
+            <option selected value="">Choose a City</option>
+            {% for location in locations %}
+            <option value="{{location.location_id}}">
+              {{location.location_name}}
+            </option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Product</td>
+        <td>
+          <select name="product" class="form-control">
+            <option selected disabled value="">Choose a Product</option>
+            {% for product in products %}
+            <option value="{{product.product_id}}">
+              {{product.product_name}}
+            </option>
+            {% endfor %}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>qty</td>
+        <td>
+          <input type="number" name="qty" class="form-control" />
+        </td>
+      </tr>
+      <div class="button-container">
+        <td>
+          <button
+            type="button"
+            onclick="goBackOrRedirect() "
+            class="btn btn-not"
+          >
+            Cancel
+          </button>
+        </td>
+        <td>
+          <button type="submit" name="submit" value="submit" class="btn">
+            Submit
+          </button>
+        </td>
+      </div>
+    </table>
+  </form>
+</div>
+{% endblock %}

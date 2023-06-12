@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% include 'nav.html' %} {% block title %}<title>
+  Process
+</title>
+{% endblock %} {% block body %}
+<div class="container-msg">
+  {% if success %}
+  <p>The Process is Successful!</p>
+  {% else %}
+  <p>The Process is Faild</p>
+  {% endif %}
+</div>
+<script>
+  setTimeout(function () {
+    window.location.href = "{{redirect_to}}";
+  }, 3000);
+</script>
+{% endblock %}

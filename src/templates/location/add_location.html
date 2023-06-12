@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% include 'nav.html' %} {% block title %}<title>
+  Add location
+</title>
+{% endblock %} {% block body %}
+<div class="container">
+  <form action="" method="POST">
+    <table class="table">
+      <tr>
+        <td>location Name</td>
+        <td>
+          <input type="text" name="name" class="form-control" />
+        </td>
+      </tr>
+      <div class="button-container">
+        <td>
+          <button
+            type="button"
+            onclick="goBackOrRedirect() "
+            class="btn btn-not"
+          >
+            Cancel
+          </button>
+        </td>
+        <td>
+          <button type="submit" name="submit" value="submit" class="btn">
+            Submit
+          </button>
+        </td>
+      </div>
+    </table>
+  </form>
+</div>
+{% endblock %}

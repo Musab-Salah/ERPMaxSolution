@@ -1,0 +1,89 @@
+{% extends 'base.html' %} {% block body %}
+<div class="wrapper">
+  <div class="section">
+    <div class="top_navbar">
+      <div class="hamburger">
+        <a href="#">
+          <i class="fas fa-bars"></i>
+        </a>
+      </div>
+      <div class="arrow">
+        <i class="fas fa-arrow-left"></i>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar">
+    <ul>
+      <li>
+        <a href="/">
+          <span class="icon"><i class="fas fa-exclamation-triangle"></i></span>
+          <span class="item">Report</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">
+          <span class="icon"><i class="fas fa-box-open"></i></span>
+          <span class="item">Product<i class="fa fa-angle-down"></i> </span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="/products">
+              <span class="icon"><i class="fas fa-table"></i></span>
+              Show Products</a
+            >
+          </li>
+          <li>
+            <a href="/product/add">
+              <span class="icon"><i class="fa fa-plus"></i></span>
+              Add Product</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">
+          <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+          <span class="item">Location<i class="fa fa-angle-down"></i> </span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="/locations">
+              <span class="icon"><i class="fa fa-table"></i></span>
+              Show Locations</a
+            >
+          </li>
+          <li>
+            <a href="/location/add">
+              <span class="icon"><i class="fa fa-plus"></i></span>
+              Add Location</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">
+          <span class="icon"><i class="fas fa-truck-loading"></i> </span>
+          <span class="item"
+            >Product Movement<i class="fa fa-angle-down"></i>
+          </span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="/product_movements">
+              <span class="icon"><i class="fa fa-table"></i></span>
+              Show Movements</a
+            >
+          </li>
+          <li>
+            <a href="/product_movement/add">
+              <span class="icon"><i class="fa fa-plus"></i></span>
+              Add Movement</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/nav.js')}}"></script>
+{% endblock %}

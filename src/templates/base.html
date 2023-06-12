@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/global.css') }}"
+    />
+
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    />
+    {% block title %} {% endblock %}
+  </head>
+  <body>
+    {% block body %} {% endblock %}
+    <script src="{{ url_for('static', filename='js/js.js')}}"></script>
+  </body>
+</html>
