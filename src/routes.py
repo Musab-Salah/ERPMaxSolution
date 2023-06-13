@@ -21,20 +21,20 @@ def get_all_product():
 @app.route('/product/add', methods=['GET', 'POST'])
 def add_product():
     if request.method == 'POST':
-        if ProductManager.add_product(request):
+        if ProductManager.add_edit_product(request,None):
             return render_template('success_faild.html', success=True,redirect_to='/products')
         else: return render_template('success_faild.html', success=False,redirect_to='/products')
-    else :return render_template('/product/add_product.html')
+    else :return render_template('/product/add_edit_product.html')
 
 
 @app.route('/product/edit/<string:id>', methods=['GET', 'POST'])
 def edit_product(id):
     product = Product.query.filter_by(product_id=id).first()
     if request.method == 'POST':
-        if ProductManager.edit_product(request,product):
+        if ProductManager.add_edit_product(request,product):
             return render_template('success_faild.html', success=True,redirect_to='/products')
         else: return render_template('success_faild.html', success=False,redirect_to='/products')
-    else :return render_template('/product/edit_product.html', product=product)
+    else :return render_template('/product/add_edit_product.html', product=product)
 
 
 @app.route('/product/delete/<string:id>', methods=['GET', 'POST'])
@@ -43,7 +43,8 @@ def delete_product(id):
         if ProductManager.delete_product(id):
             return render_template('success_faild.html', success=True,redirect_to='/products')
         else: return render_template('success_faild.html', success=False,redirect_to='/products')              
-    else :return render_template('delete_confirm.html')
+    else :
+        return render_template('delete_confirm.html', product=ProductManager.get_product(id))
 
 
  # Location
@@ -54,20 +55,20 @@ def get_all_location():
 @app.route('/location/add', methods=['GET', 'POST'])
 def add_location():
     if request.method == 'POST':
-        if LocationManager.add_location(request):
+        if LocationManager.add_edit_location(request,None):
             return render_template('success_faild.html', success=True,redirect_to='/locations')
         else: return render_template('success_faild.html', success=False,redirect_to='/locations')
-    else :return render_template('/location/add_location.html')
+    else :return render_template('/location/add_edit_location.html')
 
 
 @app.route('/location/edit/<string:id>', methods=['GET', 'POST'])
 def edit_location(id):
     location = Location.query.filter_by(location_id=id).first()
     if request.method == 'POST':
-        if LocationManager.edit_location(request,location):
+        if LocationManager.add_edit_location(request,location):
             return render_template('success_faild.html', success=True,redirect_to='/locations')
         else: return render_template('success_faild.html', success=False,redirect_to='/locations')
-    else :return render_template('/location/edit_location.html', location=location)
+    else :return render_template('/location/add_edit_location.html', location=location)
 
 
 @app.route('/location/delete/<string:id>', methods=['GET', 'POST'])
@@ -76,7 +77,7 @@ def delete_location(id):
         if LocationManager.delete_location(id):
             return render_template('success_faild.html', success=True,redirect_to='/locations')
         else: return render_template('success_faild.html', success=False,redirect_to='/locations')
-    else :return render_template('delete_confirm.html')
+    else :return render_template('delete_confirm.html', location=LocationManager.get_location(id))
 
 
 # ProductMovement
@@ -90,10 +91,10 @@ def add_movement():
     products = Product.query.all()
     locations = Location.query.all()
     if request.method == 'POST':
-        if ProductMovementManager.add_product_movement(request):
+        if ProductMovementManager.add_edit_product_movement(request,None):
             return render_template('success_faild.html', success=True,redirect_to='/product_movements')
         else: return render_template('success_faild.html', success=False,redirect_to='/product_movements')    
-    else :return render_template('/product_movement/add_product_movement.html',products=products ,locations=locations)
+    else :return render_template('/product_movement/add_edit_product_movement.html',products=products ,locations=locations)
 
 
 @app.route('/product_movement/edit/<string:id>', methods=['GET', 'POST'])
@@ -102,10 +103,10 @@ def edit_movement(id):
     products = Product.query.all()
     locations = Location.query.all()
     if request.method == 'POST':
-        if ProductMovementManager.edit_product_movement(request,movement):
+        if ProductMovementManager.add_edit_product_movement(request,movement):
             return render_template('success_faild.html', success=True,redirect_to='/product_movements')
         else: return render_template('success_faild.html', success=False,redirect_to='/product_movements')    
-    else :return render_template('/product_movement/edit_product_movement.html', movement=movement,products=products ,locations=locations)
+    else :return render_template('/product_movement/add_edit_product_movement.html', movement=movement,products=products ,locations=locations)
 
 @app.route('/product_movement/delete/<string:id>', methods=['GET', 'POST'])
 def delete_movement(id):
@@ -113,6 +114,6 @@ def delete_movement(id):
         if ProductMovementManager.delete_product_movement(id):
             return render_template('success_faild.html', success=True,redirect_to='/product_movements')
         else: return render_template('success_faild.html', success=False,redirect_to='/product_movements')    
-    else :return render_template('delete_confirm.html')
+    else :return render_template('delete_confirm.html', movement=ProductMovementManager.get_product_movement(id))
 
 

@@ -6,7 +6,14 @@
 <div class="container-delete">
   <form class="form-delete" action="" method="post">
     <table class="table">
-      <p class="confirm-msg">Click YES to confirm</p>
+      <p class="confirm-msg">
+        Are You Sure To Delete {% if product %} {{product.product_name}} {%
+        endif %} {% if location %} {{location.location_name}} {% endif %} {% if
+        movement %}{{movement.product}} From {% if not movement.from_location %}
+        From shipping {% else %} {{movement.from_location}} {% endif %} To {%if
+        not movement.to_location %} Out of Stock {% else %}
+        {{movement.to_location}} {% endif %}{% endif %}
+      </p>
       <div class="button-container">
         <td>
           <button

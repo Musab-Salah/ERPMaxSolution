@@ -1,6 +1,6 @@
 # ERPMaxSolutions
 
-This is a test project for ERPMaxSolutions to create a web application using Flask framework to manage inventory of a list of products in respective warehouses. 
+This is a test project for ERPMaxSolutions to create a web application using Flask framework to manage inventory of a list of products in respective warehouses.
 
 ## Installation
 
@@ -9,11 +9,13 @@ This is a test project for ERPMaxSolutions to create a web application using Fla
 ```bash
 git clone https://github.com/Musab-Salah/ERPMaxSolutions.git
 ```
+
 2- To run the application you need to go to the run file and press the play button.
 
 ![alt text](https://raw.githubusercontent.com/Musab-Salah/ERPMaxSolutions/main/screenshots/run.png)
 
 ## Usage
+
 On the report page you will see product balance in each Location
 
 ![alt text](https://raw.githubusercontent.com/Musab-Salah/ERPMaxSolutions/main/screenshots/report.png)
@@ -42,6 +44,8 @@ If you click on the edit, the Edit page will open with the previous information 
 When deleting, there will be a confirmation of the deletion process
 
 ![alt text](https://raw.githubusercontent.com/Musab-Salah/ERPMaxSolutions/main/screenshots/Screenshot_7.png)
+![alt text](https://raw.githubusercontent.com/Musab-Salah/ERPMaxSolutions/main/screenshots/Screenshot_72.png)
+![alt text](https://raw.githubusercontent.com/Musab-Salah/ERPMaxSolutions/main/screenshots/Screenshot_73.png)
 
 After each process, whether it is adding, deleting or edit, there will be a message stating either the success of the process or its failure
 
@@ -53,6 +57,6 @@ If you want to bring new product to a city, it will appear in the From field "Fr
 ![alt text](https://raw.githubusercontent.com/Musab-Salah/ERPMaxSolutions/main/screenshots/Fromshipping.png)
 ![alt text](https://raw.githubusercontent.com/Musab-Salah/ERPMaxSolutions/main/screenshots/OutofStock.png)
 
-
+## There are more screenshots in the [screenshots] file
 
 ### Thanks for give me your time.

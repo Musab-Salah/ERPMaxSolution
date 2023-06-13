@@ -7,29 +7,26 @@ class LocationManager():
         locations = Location.query.all()
         return locations
     
+    def get_location(id):
+        location = Location.query.get(id)
+        return location
+    
 
-    def add_location(request):
+    def add_edit_location(request, location):
             name = request.form['name']
-            new_location =  Location(
-                location_name=name,
-            )
-            db.session.add(new_location)
+            if not location:
+                new_location =  Location(
+                    location_name=name,
+                )
+                db.session.add(new_location)
+            else: 
+                location.location_name = name
             try:
                 db.session.commit()
                 return True
             except Exception :
                 db.session.rollback() 
                 return False  
-
-    def edit_location(request,location):
-        location.location_name = request.form['name']
-        try:
-            db.session.commit()
-            return True
-        except Exception :
-            db.session.rollback() 
-            return False  
-
 
     def delete_location(id):
         location = Location.query.filter_by(location_id=id).first()

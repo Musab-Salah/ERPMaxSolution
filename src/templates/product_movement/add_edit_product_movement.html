@@ -1,5 +1,8 @@
 {% extends 'base.html' %} {% include 'nav.html' %} {% block title %}
-<title>Add Movment</title>
+<title>
+  {% if movement %}Edit Product Movement{% else %}Add Product Movement{% endif
+  %}
+</title>
 {% endblock %} {% block body %}
 <div class="container">
   <form action="" method="POST">
@@ -8,8 +11,12 @@
         <td>From</td>
         <td>
           <select name="from" class="form-control">
-            <option selected value="">Choose a City</option>
-            {% for location in locations %}
+            <option value="">Choose a City</option>
+            {% if movement %}
+            <option selected value="{{movement.from_location.location_id}}">
+              {{movement.from_location.location_name}}
+            </option>
+            {% endif %} {% for location in locations %}
             <option value="{{location.location_id}}">
               {{location.location_name}}
             </option>
@@ -21,8 +28,12 @@
         <td>To</td>
         <td>
           <select name="to" class="form-control">
-            <option selected value="">Choose a City</option>
-            {% for location in locations %}
+            <option value="">Choose a City</option>
+            {% if movement %}
+            <option selected value="{{movement.to_location.location_id}}">
+              {{movement.to_location.location_name}}
+            </option>
+            {% endif %} {% for location in locations %}
             <option value="{{location.location_id}}">
               {{location.location_name}}
             </option>
@@ -33,9 +44,13 @@
       <tr>
         <td>Product</td>
         <td>
-          <select name="product" class="form-control">
-            <option selected disabled value="">Choose a Product</option>
-            {% for product in products %}
+          <select name="product" class="form-control" required>
+            <option disabled value="">Choose a Product</option>
+            {% if movement %}
+            <option selected value="{{movement.product.product_id}}">
+              {{movement.product.product_name}}
+            </option>
+            {% endif %} {% for product in products %}
             <option value="{{product.product_id}}">
               {{product.product_name}}
             </option>
@@ -44,16 +59,22 @@
         </td>
       </tr>
       <tr>
-        <td>qty</td>
+        <td>Qty</td>
         <td>
-          <input type="number" name="qty" class="form-control" />
+          <input
+            type="number"
+            name="qty"
+            value="{% if movement %}{{movement.qty}}{% endif %}"
+            class="form-control"
+            required
+          />
         </td>
       </tr>
       <div class="button-container">
         <td>
           <button
             type="button"
-            onclick="goBackOrRedirect() "
+            onclick="goBackOrRedirect()"
             class="btn btn-not"
           >
             Cancel
@@ -61,7 +82,7 @@
         </td>
         <td>
           <button type="submit" name="submit" value="submit" class="btn">
-            Submit
+            {% if movement %}Update{% else %}Submit{% endif %}
           </button>
         </td>
       </div>

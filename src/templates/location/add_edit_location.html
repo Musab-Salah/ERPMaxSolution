@@ -1,17 +1,17 @@
-{% extends 'base.html' %} {% include 'nav.html' %} {% block title %}<title>
-  Edit Product
-</title>
- {% endblock %} {% block body %}
+{% extends 'base.html' %} {% include 'nav.html' %} {% block title %}
+<title>{% if location %}Edit Location{% else %}Add Location{% endif %}</title>
+{% endblock %} {% block body %}
 <div class="container">
   <form action="" method="POST">
     <table class="table">
       <tr>
-        <td>Product Name</td>
+        <td>Location Name</td>
         <td>
           <input
             type="text"
             name="name"
-            value="{{product.product_name}}"
+            required
+            value="{% if location %}{{location.location_name}}{% endif %}"
             class="form-control"
           />
         </td>
@@ -20,7 +20,7 @@
         <td>
           <button
             type="button"
-            onclick="goBackOrRedirect() "
+            onclick="goBackOrRedirect()"
             class="btn btn-not"
           >
             Cancel
@@ -28,12 +28,11 @@
         </td>
         <td>
           <button type="submit" name="submit" value="submit" class="btn">
-            Update
+            {% if location %}Update{% else %}Submit{% endif %}
           </button>
         </td>
       </div>
     </table>
   </form>
 </div>
-
 {% endblock %}

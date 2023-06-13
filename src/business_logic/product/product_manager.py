@@ -7,29 +7,25 @@ class ProductManager():
         products = Product.query.all()
         return products
     
-
-    def add_product(request):
+    def get_product(id):
+        product = Product.query.get(id)
+        return product
+    
+    def add_edit_product(request, product):
             name = request.form['name']
-            new_product =  Product(
-                product_name=name,
-            )
-            db.session.add(new_product)
+            if not product:
+                new_product =  Product(
+                    product_name=name,
+                )
+                db.session.add(new_product)
+            else :
+                product.product_name = name
             try:
                 db.session.commit()
                 return True
             except Exception :
                 db.session.rollback() 
                 return False  
-
-    def edit_product(request,product):
-        product.product_name = request.form['name']
-        try:
-            db.session.commit()
-            return True
-        except Exception :
-            db.session.rollback() 
-            return False  
-
 
     def delete_product(id):
         product = Product.query.filter_by(product_id=id).first()
