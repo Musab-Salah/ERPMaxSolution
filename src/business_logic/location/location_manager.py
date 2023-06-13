@@ -30,8 +30,10 @@ class LocationManager():
 
     def delete_location(id):
         location = Location.query.filter_by(location_id=id).first()
-        product_movement = ProductMovement.query.filter_by(movement_id=id).first()
-        if location and not product_movement:
+        product_movement_from = ProductMovement.query.filter_by(from_location_id=id).first()
+        product_movement_to = ProductMovement.query.filter_by(to_location_id=id).first()
+        
+        if location and not (product_movement_from or product_movement_to):
             try:
                 db.session.delete(location)
                 db.session.commit()
